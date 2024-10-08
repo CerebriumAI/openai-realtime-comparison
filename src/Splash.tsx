@@ -1,5 +1,5 @@
 import React from "react";
-import { Book, Info, Rocket } from "lucide-react";
+import { Book , Rocket } from "lucide-react";
 
 import CerebriumLogo from "@/assets/logos/cerebrium.png";
 import RimeLogo from "@/assets/logos/rime.png";
@@ -45,7 +45,7 @@ const Splash: React.FC<SplashProps> = ({ handleReady }) => {
 
 
         {/* TODO: Uncomment this line to implement yourself */}
-        <Button onClick={handleReady()}>Start Bot</Button>
+        <Button onClick={handleReady}>Start Bot</Button>
 
         <div className="h-[1px] bg-primary-300 w-full" />
 
