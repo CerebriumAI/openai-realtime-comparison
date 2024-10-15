@@ -41,6 +41,8 @@ if (serverUrl && !serverUrl.endsWith("/")) serverUrl += "/";
 // Auto room creation (requires server URL)
 const autoRoomCreation = import.meta.env.VITE_MANUAL_ROOM_ENTRY ? false : true;
 
+type Endpoint = "start_bot" | "start_openai";
+
 // Query string for room URL
 const roomQs = new URLSearchParams(window.location.search).get("room_url");
 const checkRoomUrl = (url: string | null): boolean =>
@@ -58,6 +60,7 @@ export default function App() {
   const [state, setState] = useState<State>(
     showConfigOptions ? "idle" : "configuring"
   );
+  const [selectedEndpoint, setSelectedEndpoint] = useState<Endpoint>("start_bot");
   const [error, setError] = useState<string | null>(null);
   const [startAudioOff, setStartAudioOff] = useState<boolean>(false);
   const [roomUrl, setRoomUrl] = useState<string | null>(roomQs || null);
@@ -65,7 +68,14 @@ export default function App() {
     (roomQs && checkRoomUrl(roomQs)) || false
   );
   const [capacityError, setCapacityError] = useState<string>(""); // New state for start error
+  const [selectedTab, setSelectedTab] = useState<string>("Custom"); // New state for tab selection
 
+  function handleTabChange(tab: string) {
+    if (tab !== selectedTab) {
+      leave(); // Call leave() when switching tabs
+      setSelectedTab(tab);
+    }
+  }
 
   function handleRoomUrl() {
     if ((autoRoomCreation && serverUrl) || checkRoomUrl(roomUrl)) {
@@ -89,7 +99,7 @@ export default function App() {
       try {
         data = await fetch_start_agent(`${serverUrl}create_room`, serverAuth);
         if (data && !data.error) {
-          fetch(`${serverUrl}start_bot`, {
+          fetch(`${serverUrl}${selectedEndpoint}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -207,6 +217,20 @@ export default function App() {
         <CardTitle>Pipecat {import.meta.env.VITE_APP_TITLE}</CardTitle>
         <CardDescription>Check configuration below</CardDescription>
       </CardHeader>
+      <div className="flex justify-center mb-4">
+          <Button
+            onClick={() => handleTabChange("Custom")}
+            className={selectedTab === "Custom" ? "active-tab" : ""}
+          >
+            Custom
+          </Button>
+          <Button
+            onClick={() => handleTabChange("OpenAI")}
+            className={selectedTab === "OpenAI" ? "active-tab" : ""}
+          >
+            OpenAI
+          </Button>
+        </div>
       <CardContent stack>
         <RoomSetup
           serverUrl={serverUrl}

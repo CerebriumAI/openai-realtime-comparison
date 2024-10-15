@@ -34,7 +34,7 @@ interface SessionProps {
 }
 
 export const Session = React.memo(
-  ({ onLeave, startAudioOff = false, openMic = false }: SessionProps) => {
+  ({ onLeave, startAudioOff = false, openMic = true }: SessionProps) => {
     const daily = useDaily();
     const [hasStarted, setHasStarted] = useState(openMic);
     const [showDevices, setShowDevices] = useState(false);
@@ -62,11 +62,10 @@ export const Session = React.memo(
 
     // Mute on join
     useEffect(() => {
-      // Avoid immediately triggering interruption on load
-      // by muting the users mic initially
-      if (daily) {
-        daily.setLocalAudio(false);
+      if (!daily || startAudioOff) {
+        return;
       }
+      daily.setLocalAudio(true);
     }, [daily, startAudioOff]);
 
     // Reset stats aggregator on mount
@@ -147,6 +146,12 @@ export const Session = React.memo(
 
     return (
       <>
+      <div className="instructions p-4 rounded-md mb-4">
+        <h2 className="text-lg font-bold">Instructions to compare services </h2>
+        <p>You will start using the OpenAI Realtime API. In order to switch to the custom alternative
+          say "Please can I switch to the custom service"</p>
+        <p>To switch back to the OpenAI service say "Please can I switch to the OpenAI realtime service"</p>
+      </div>
         <dialog ref={modalRef}>
           <Card className="w-svw max-w-full md:max-w-md">
             <CardHeader>
@@ -195,7 +200,7 @@ export const Session = React.memo(
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={() => window.open('https://github.com/CerebriumAI/examples/tree/master/18-realtime-voice-agent', '_blank')}
+                  onClick={() => window.open('https://github.com/CerebriumAI/examples/tree/master/31-openai-realtime-api-comparison', '_blank')}
                 >
                   <Github /> 
                 </Button>

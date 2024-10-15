@@ -15,6 +15,8 @@ const AudioIndicatorBubble: React.FC = () => {
   const audioTrack = useAudioTrack(localSessionId);
   const volRef = useRef<HTMLDivElement>(null);
 
+  console.log('Audio track:', audioTrack);
+
   useAudioLevel(
     audioTrack?.persistentTrack,
     useCallback((volume) => {

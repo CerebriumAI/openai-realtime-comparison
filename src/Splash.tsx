@@ -35,11 +35,11 @@ const Splash: React.FC<SplashProps> = ({ handleReady }) => {
 
         <div className="max-w-full lg:max-w-2xl flex flex-col gap-6">
           <p className="lg:text-lg text-primary-600">
-            This is a demo of a cheaper and faster implementation of an alternative solution to OpenAI's realtime API. Realize 50%
-            cost savings and 35% faster latencies without a drop in performance.
+            This is a demo of a cheaper and faster implementation of an alternative solution to OpenAI's realtime API. Realize <b>50%</b>
+            cost savings and <b>35%</b> faster latencies without a drop in performance.
           </p>
           <p className="lg:text-lg text-primary-600">
-            This example was built using the Cerebrium Serverless AI infrastructure platform.
+            This example was built using the Cerebrium Serverless AI infrastructure platform and Rime's Text-to-Speech API.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ const Splash: React.FC<SplashProps> = ({ handleReady }) => {
         <footer className="flex flex-col lg:flex-row lg:gap-2">
           <Button variant="light" asChild>
             <a
-              href="https://github.com/CerebriumAI/examples/tree/master/18-realtime-voice-agent"
+              href="https://github.com/CerebriumAI/examples/tree/master/31-openai-realtime-api-comparison"
               className="text-indigo-600"
             >
               <Book className="size-6" />
