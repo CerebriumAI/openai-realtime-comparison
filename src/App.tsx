@@ -60,7 +60,7 @@ export default function App() {
   const [state, setState] = useState<State>(
     showConfigOptions ? "idle" : "configuring"
   );
-  const [selectedEndpoint, setSelectedEndpoint] = useState<Endpoint>("start_bot");
+  const [selectedEndpoint] = useState<Endpoint>("start_bot");
   const [error, setError] = useState<string | null>(null);
   const [startAudioOff, setStartAudioOff] = useState<boolean>(false);
   const [roomUrl, setRoomUrl] = useState<string | null>(roomQs || null);
@@ -204,7 +204,7 @@ export default function App() {
         </CardFooter>
         {capacityError && (
           <div className="text-red-500 mt-2 p-4">
-            {capacityError}<br/> Alternatively you can create your own. Click <strong><u><a href="https://docs.cerebrium.ai/v4/examples/realtime-voice-agents">here</a></u></strong> to see how
+            {capacityError}<br/> Alternatively you can create your own. Click <strong><u><a href="www.cerebrium.ai/blog/an-alternative-to-openai-realtime-api-for-voice-capabilities">here</a></u></strong> to see how
           </div>
         )}
       </Card>

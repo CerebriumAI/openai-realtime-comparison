@@ -61,7 +61,7 @@ const Splash: React.FC<SplashProps> = ({ handleReady }) => {
           </Button>
           <Button variant="light" asChild>
             <a
-              href="https://docs.cerebrium.ai/v4/examples/realtime-voice-agents"
+              href="www.cerebrium.ai/blog/an-alternative-to-openai-realtime-api-for-voice-capabilities"
               className="text-indigo-600"
             >
               <Rocket className="size-6" />
