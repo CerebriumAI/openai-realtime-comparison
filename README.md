@@ -1,6 +1,6 @@
-# Pipecat Client Web UI
+# OpenAI Alternative for Voice Capabilities
 
-Some docs regarding how all this fits together: [here](/docs/)
+Some docs regarding how all this fits together: [here](https://www.cerebrium.ai/blog/an-alternative-to-openai-realtime-api-for-voice-capabilities)
 
 ## Getting setup
 
