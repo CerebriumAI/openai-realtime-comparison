@@ -52,7 +52,7 @@ const Splash: React.FC<SplashProps> = ({ handleReady }) => {
         <footer className="flex flex-col lg:flex-row lg:gap-2">
           <Button variant="light" asChild>
             <a
-              href="https://github.com/CerebriumAI/examples/tree/master/31-openai-realtime-api-comparison"
+              href="https://github.com/CerebriumAI/examples/tree/master/5-voice/6-openai-realtime-api-comparison"
               className="text-indigo-600"
             >
               <Book className="size-6" />
